@@ -59,4 +59,21 @@ public class Factura {
         return monto;
     }
     
+    /*
+    try {
+        habilitaCajas(false);
+        btnRegistrar.setVisible(true);
+        btnGrabarIngreso.setVisible(false);
+        
+        Factura fact = new Factura(getNumFact(), getFecha(), getVendedor(), getMonto());
+    
+        f.agregar(fact);
+        listar();
+        JOptionPane.showMessageDialog(null, "Factura ingresada correctamente", "Confirmación", JOptionPane.INFORMATION_MESSAGE):
+    } catch(Exception ex) {
+        JOptionPane.showMessageDialog(null, "Error de Ingreso de Datos", JOptionPane.ERROR_MESSAGE)
+        num--;
+    }
+    */
+    
 }
