@@ -17,6 +17,94 @@ public class frmVenta extends javax.swing.JFrame {
         initComponents();
     }
 
+private void btnRegistrarActionPerformed(...) {
+ txtNfactura.setText(""+generaNumero());
+  asignaFecha();
+ txtVendedor.requestFocus();
+    habilitaCajas(true);
+txtVendedor.setEditable(true);
+   txtMonto.setEditable(true);
+   txtVendedor.setText("");
+  txtMonto.setText("");
+   btnRegistrar.setVisible(false);
+  btnGrabarIngreso.setVisible(true);
+ }
+
+private void btnConsultarActionPerformed(...) {
+  try{
+limpiaCajas();
+  limpiaMatriz();
+int buscoFactura=Integer.parseInt(JOptionPane.
+  showInputDialog(null,
+"Ingrese un numero de Factura:"));
+   //objeto fact que busca el numero de factura en el ArrayList f
+Factura fact=f.buscar(buscoFactura);
+if (fact!=null){
+    tFacturas.setValueAt(fact.getNfactura(), 0, 0);
+    tFacturas.setValueAt(fact.getfecha(), 0, 1);
+  tFacturas.setValueAt(fact.getVendedor(), 0, 2);
+     tFacturas.setValueAt(fact.getMonto(), 0, 3);
+}else
+    JOptionPane.showMessageDialog(null,"Factura NO encontrada",
+                     "Confirmacion",JOptionPane.ERROR_MESSAGE);
+ } catch(Exception ex){
+JOptionPane.showMessageDialog(null,"Error de Entrada de Datos",
+      "Confirmacion",JOptionPane.ERROR_MESSAGE);
+  }
+}
+
+private void btnModificarActionPerformed(...) {
+   try{
+   limpiaCajas();
+  limpiaMatriz();
+   btnModificar.setVisible(false);
+ btnGrabarModificado.setVisible(true);
+  int buscoFactura=Integer.parseInt(JOptionPane.
+ showInputDialog(null,"Ingrese un numero de Factura:"));
+   //objeto fact que busca el numero de factura en el ArrayList f
+   Factura fact=f.buscar(buscoFactura);
+  if (fact!=null){
+  tFacturas.setValueAt(fact.getNfactura(), 0, 0);
+tFacturas.setValueAt(fact.getfecha(), 0, 1);
+tFacturas.setValueAt(fact.getVendedor(), 0, 2);
+tFacturas.setValueAt(fact.getMonto(), 0, 3);
+      txtNfactura.setText(""+fact.getNfactura());
+txtFechaVenta.setText(fact.getfecha());
+txtVendedor.setText(fact.getVendedor());
+txtMonto.setText(""+fact.getMonto());
+         habilitaCajas(true);
+   txtNfactura.setEditable(false);
+   txtFechaVenta.setEditable(false);
+}else
+    JOptionPane.showMessageDialog(null,"Factura NO encontrada",
+                     "Confirmacion",JOptionPane.ERROR_MESSAGE);
+}catch(Exception ex){
+  JOptionPane.showMessageDialog(null,"Factura NO encontrada",
+       "Confirmacion",JOptionPane.ERROR_MESSAGE);
+  btnModificar.setVisible(true);
+ btnGrabarModificado.setVisible(false);
+  }
+ }
+
+private void btnGrabarModificadoActionPerformed(...) {
+try{
+  Factura fact=f.buscar(getNumFact());
+  fact.setVendedor(getVendedor());
+fact.setMonto(getMonto());
+  JOptionPane.showMessageDialog(null,
+         "Factura Modificada Correctamente",
+             "Confirmacion",JOptionPane.INFORMATION_MESSAGE);
+listar();
+   }catch(Exception ex){
+ JOptionPane.showMessageDialog(null,
+  "Ocurrio un error al intentar Grabar",
+"Confirmacion",JOptionPane.INFORMATION_MESSAGE);
+   }
+btnGrabarModificado.setVisible(false);
+        btnModificar.setVisible(true);
+}
+    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
